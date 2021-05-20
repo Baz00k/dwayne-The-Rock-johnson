@@ -3,11 +3,11 @@ const socket = require("socket.io");
 const game = require("./game.js");
 
 // App setup
-const PORT = 2137;
+const PORT = process.env.PORT || 3000; //listen on port defined by environmental variable (for heroku)
 const app = express();
 const server = app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);
-  console.log(`http://localhost:${PORT}`);
+  console.log(`http://0.0.0.0:${PORT}`);
 });
 
 // Static files
@@ -20,13 +20,12 @@ var usersArray = [];
 var rooms = [];
 
 io.on("connection", function (socket) {
-  console.log("Made socket connection");
   if (rooms.length == 0) {
     let newUser = new User(socket.id);
     let newRoom = new Room(generateID());
     rooms.push(newRoom);
 
-    addUserToArrays(rooms[0], newUser)
+    addUserToArrays(rooms[0], newUser);
     newUser.joinRoom(rooms[0].id, socket);
 
   } else {
@@ -53,7 +52,7 @@ io.on("connection", function (socket) {
       rooms.push(newRoom);
       newUser.joinRoom(newRoom.id, socket);
 
-      addUserToArrays(newRoom, newUser)
+      addUserToArrays(newRoom, newUser);
 
       if (newRoom.checkIfFull()) {
         io.to(newRoom.id).emit('enemy_connect', newRoom.users);
@@ -63,7 +62,6 @@ io.on("connection", function (socket) {
 
   socket.on("disconnect", () => {
     let room;
-    console.log("Disconneced");
     let user = usersArray.find(user => user.id == socket.id);
     for (let i = 0; i < rooms.length; i++) {
       if (rooms[i].id === user.room) {
@@ -77,25 +75,22 @@ io.on("connection", function (socket) {
   socket.on("data", (data) => {
     let fullRoom;
     let room = makeChoice(data);
-    socket.to(room).emit('choice', data)
+    socket.to(room).emit('choice', data);
     if (checkIfChose(room)) {
       for(let i = 0; i < rooms.length; i++) {
         if(rooms[i].id == room) {
-           fullRoom = rooms[i]
+           fullRoom = rooms[i];
         }
       }
-      let winner = game.compare(fullRoom.users[0], fullRoom.users[1])
+      let winner = game.compare(fullRoom.users[0], fullRoom.users[1]);
       io.to(room).emit("winner", winner);
       resetGame();
     }
   })
 
   socket.on("chat", (data) => {
-    console.log(data)
     socket.to(data.id).volatile.emit('new_message',data.message);
   })
-
-  console.log(usersArray)
 });
 
 function checkIfChose(room) {
@@ -103,7 +98,7 @@ function checkIfChose(room) {
 
   for(let i = 0; i < rooms.length; i++) {
     if(rooms[i].id == room) {
-       fullRoom = rooms[i]
+       fullRoom = rooms[i];
     }
   }
   if (fullRoom.users[0].choice && fullRoom.users[1].choice) {
@@ -139,7 +134,7 @@ function removeUser(socket, room) {
 
 function addUserToArrays(room, user) {
   usersArray.push(user);
-  room.users.push(user)
+  room.users.push(user);
 }
 
 
@@ -169,8 +164,8 @@ class Room {
 
   checkIfFull = () => {
     if (this.users.length >= 2) {
-      return true
-    } else return false
+      return true;
+    } else return false;
   }
 
   removeUserFromRoom = (socket) => {
