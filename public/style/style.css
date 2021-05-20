@@ -1,0 +1,207 @@
+#app {
+    min-height: 100vh;
+    user-select: none;
+}
+
+.player-board {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.game-card {
+    width: calc(150px + 2vw);
+    height: calc(150px + 2vw);
+    max-width: 200px;
+    max-height: 200px;
+    margin: 1rem;
+    border: 1px solid #5c5c5c;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.2s ease-in-out;
+}
+
+.chosen {
+    transform: scale3d(1.2, 1.2, 1.2);
+    box-shadow: 0 20px 5px -10px #00000066;
+    border: 3px solid #424242;
+}
+
+.active {
+    cursor: pointer;
+}
+
+.active:hover {
+    transform: scale3d(1.2, 1.2, 1.2);
+    box-shadow: 0 20px 5px -10px #00000066;
+}
+
+.game-card_enemy {
+    width: calc(150px + 2vw);
+    height: calc(150px + 2vw);
+    max-width: 200px;
+    max-height: 200px;
+    margin: 1rem;
+    border: 1px solid #5c5c5c;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.2s ease-in-out;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-evenly;
+    justify-items: center;
+    height: 100vh;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score {
+    text-align: center;
+    line-height: 180%;
+    font-size: 28px;
+    font-weight: 500;
+    transform: translate(0, -100px);
+}
+
+.hidden {
+    display: none;
+}
+
+#rock {
+    background-image: url(../img/rock.png);
+}
+
+#scissors {
+    background-image: url(../img/scissors.png);
+}
+
+#paper {
+    background-image: url(../img/paper.png);
+}
+
+#rock_enemy {
+    background-image: url(../img/rock_enemy.png);
+}
+
+#scissors_enemy {
+    background-image: url(../img/scissors_enemy.png);
+}
+
+#paper_enemy {
+    background-image: url(../img/paper_enemy.png);
+}
+
+.status {
+    text-align: center;
+    display: block;
+    width: 400px;
+    background-color: whitesmoke;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 8px 16px 20px 8px;
+    border: 3px solid black;
+    border-radius: 20px;
+    margin-bottom: -20px;
+}
+
+.search-input {
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    height: 44px;
+    margin: 0 auto;
+    min-width: 360px;
+    padding: 0px 1px 0px 5px;
+    max-width: 600px;
+}
+
+.search-input:hover {
+    box-shadow: 0 1px 6px #20212447;
+    border-color: #dfe1e500
+}
+
+input {
+    border: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    color: #000000de;
+    background: transparent;
+    word-wrap: break-word;
+    display: flex;
+    flex: 100%;
+    height: 34px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+*:focus {
+    outline: none;
+}
+
+.chat {
+    height: 250px;
+    justify-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+}
+
+#chat_history {
+    height: 210px;
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    padding-bottom: 5px;
+    justify-items: flex-end;
+}
+
+.chat_message {
+    padding: 0.4rem;
+    text-align: center;
+    border: 1px solid #00000038;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.chat_message > p {
+    margin: 0;
+}
+
+.player {
+    display:block;
+    margin-left: 2rem;
+    align-self: flex-end;
+    background-color: #683eff;
+    color: white;
+}
+
+.enemy {
+    display:block;
+    margin-right: 2rem;
+    align-self: flex-start;
+    background-color: #d4d4d4;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papier, Kamień, Nożyce</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+
+    <div id="app" class="container">
+        <div class="game-board row">
+            <div class="player-board col-4">
+                <div class="cards d-flex flex-column align-items-center ">
+                    <div id="rock" class="game-card"></div>
+                    <div id="paper" class="game-card"></div>
+                    <div id="scissors" class="game-card"></div>
+                </div>
+            </div>
+            <div class="center col-4 text-center">
+                <div class="game-title" id="game-title">
+                    <h1>Papier, Kamień, Nożyce</h1>
+                </div>
+                <div class="info">
+                    <div class="score">Wynik:
+                        <p id="score"></p>
+                    </div>
+                </div>
+                <div class="chat">
+                    <div id="chat_history"></div>
+                    <form id="chat" autocomplete="off">
+                        <div class="row flex-nowrap search-input">
+                            <div class="col-12 d-flex align-items-center">
+                                <input type="text" id="message_input" name="chat_history" title="chat" placeholder="Napisz coś..." maxlength="250"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="player-board col-4 hidden" id="enemy-board">
+                <div class="cards d-flex flex-column align-items-center ">
+                    <div id="rock_enemy" class="game-card_enemy"></div>
+                    <div id="paper_enemy" class="game-card_enemy"></div>
+                    <div id="scissors_enemy" class="game-card_enemy"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="status">Status: <br>
+        <p id="status" class="m-0"><noscript>Aby gra poprawnie działała potrzebny jest JavaScript</noscript></p>
+    </div>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="helper.js"></script>
+    <script src="game_class.js"></script>
+    <script src="client.js"></script>
+    <script src="main.js" defer></script>
+
+</body>
+
+</html>
